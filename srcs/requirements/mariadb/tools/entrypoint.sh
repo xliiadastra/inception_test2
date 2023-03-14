@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# mysql이 소켓파일을 저장하는 디렉토리
 if [ ! -d "/run/mysqld" ]; then
 	mkdir -p /run/mysqld
 	chown -R mysql:mysql /run/mysqld
@@ -24,3 +25,9 @@ EOF
 fi
 
 exec /usr/bin/mysqld --user=mysql $@
+
+# mysql 데이터베이스 사용.
+# 권한 변경 내용 반영을 위해 캐시 지움.
+# $MYSQL_DATABASE 이름의 데이ㅂ터베이스를 생성. 문자셋 'utf8'
+# root 에게 모든 권한 부여. 단, localhost 접근시에만 유효.
+# $MYSQL_DATABASE 에 해당하는 데이터베이스에 대해 $MYSQL_USER 사용자에게 모든 권한 부여.
