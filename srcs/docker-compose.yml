@@ -1,3 +1,5 @@
+version: '3'
+
 services:
   nginx:
     image: nginx:1.22.1
@@ -6,25 +8,11 @@ services:
     ports:
       - 443:443
     networks:
-      - lan
+      - inception
     volumes:
       - wordpress:/var/www/html
     depends_on:
       - wordpress
-    restart: always
-
-  wordpress:
-    image: wordpress:6.1.1
-    container_name: wordpress
-    build: ./requirements/wordpress
-    env_file:
-      - .env
-    networks:
-      - lan
-    volumes:
-      - wordpress:/var/www/html
-    depends_on:
-      - mariadb
     restart: always
 
   mariadb:
@@ -34,9 +22,23 @@ services:
     env_file:
       - .env
     networks:
-      - lan
+      - inception
     volumes:
       - mariadb:/var/lib/mysql
+    restart: always
+
+  wordpress:
+    image: wordpress:6.1.1
+    container_name: wordpress
+    build: ./requirements/wordpress
+    env_file:
+      - .env
+    networks:
+      - inception
+    volumes:
+      - wordpress:/var/www/html
+    depends_on:
+      - mariadb
     restart: always
 
 volumes:
@@ -54,5 +56,5 @@ volumes:
       o: bind
 
 networks:
-  lan:
+  inception:
     driver: bridge
