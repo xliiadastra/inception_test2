@@ -23,6 +23,7 @@ RUN sed -i 's/listen = 127.0.0.1:9000/listen = 0.0.0.0:9000/g' /etc/php81/php-fp
 # wp-cli
 WORKDIR /tmp
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+# /usr/local/bin 위치는 시스템 전역에서 실행 가능한 바이너리 파일들이 위치하는 곳.
 RUN mv wp-cli.phar /usr/local/bin
 RUN chmod +x /usr/local/bin/wp-cli.phar
 RUN ln -sf /usr/local/bin/wp-cli.phar /usr/local/bin/wp
