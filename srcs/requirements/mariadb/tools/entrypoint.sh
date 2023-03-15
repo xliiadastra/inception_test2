@@ -8,7 +8,6 @@ fi
 
 if [ ! -d "/var/lib/mysql/mysql" ]; then
 	mysql_install_db --user=mysql --ldata=/var/lib/mysql > /dev/null
-
 	tfile=`mktemp`
 	cat << EOF > $tfile
 USE mysql;
@@ -19,15 +18,16 @@ GRANT ALL ON \`$MYSQL_DATABASE\`.* to '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_US
 DROP DATABASE IF EXISTS test ;
 FLUSH PRIVILEGES ;
 EOF
-
+	#
 	/usr/bin/mysqld --user=mysql --bootstrap < $tfile
 	rm -f $tfile
 fi
 
 exec /usr/bin/mysqld --user=mysql $@
 
+# /dev/null 은 unix 임시 파일이다. 보통 불필요한 출력을 제거할 때 사용된다.
 # mysql 데이터베이스 사용.
 # 권한 변경 내용 반영을 위해 캐시 지움.
-# $MYSQL_DATABASE 이름의 데이ㅂ터베이스를 생성. 문자셋 'utf8'
-# root 에게 모든 권한 부여. 단, localhost 접근시에만 유효.
-# $MYSQL_DATABASE 에 해당하는 데이터베이스에 대해 $MYSQL_USER 사용자에게 모든 권한 부여.
+# $MYSQL_DATABASE 이름의 데이터베이스를 생성. 문자셋 'utf8', 'utf8_general_ci'는 SQL 쿼리에서 대소문자를 구분하지 않게 해준다.
+# root 에게 모든 권한 부여. 단, localhost 접근시에만 유효. (creat root).
+# $MYSQL_DATABASE 에 해당하는 데이터베이스에 대해 $MYSQL_USER 사용자에게 모든 권한 부여. (creat user).
