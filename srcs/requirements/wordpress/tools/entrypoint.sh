@@ -1,6 +1,9 @@
 #!/bin/sh
+# DB_NAME call
 db_name=`wp config get DB_NAME 2> /dev/null`
+# admin ID call
 wp_admin=`wp user get admin --field=user_login 2> /dev/null`
+# wp_user ID call
 wp_user=`wp user get ${WP_USER} --field=user_login 2> /dev/null`
 
 
@@ -13,7 +16,7 @@ if [ "$db_name" = "" ]; then
 fi
 
 if [ "$wp_admin" = "" ] || [ "$wp_admin" = 'admin' ]; then
-	wp core install --admin_user=${WP_ADMIN} --admin_email=${WP_ADMIN_EMAIL} --admin_password=${WP_ADMIN_PASSWORD} --url=http://donghyuk.42.fr --title='inception'
+	wp core install --admin_user=${WP_ADMIN} --admin_email=${WP_ADMIN_EMAIL} --admin_password=${WP_ADMIN_PASSWORD} --url=http://yichoi.42.fr --title='inception'
 fi
 
 if [ "$wp_user" = "" ]; then
