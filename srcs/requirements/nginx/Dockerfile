@@ -18,7 +18,7 @@ RUN openssl req \
         -newkey rsa:2048 \
         -keyout /etc/ssl/private/nginx.key \
         -out /etc/ssl/certs/nginx.crt \
-        -subj "/C=KR/ST=Seoul/L=Gaepo/O=42Seoul/OU=Dev/emailAddress=yichoi@student.42seoul.kr/CN=www.yichoi.42.fr"
+        -subj "/C=KR/ST=Seoul/L=Gaepo/O=42Seoul/OU=Dev/emailAddress=yichoi@student.seoul42.kr/CN=www.yichoi.42.fr"
 
 # port
 EXPOSE 443
