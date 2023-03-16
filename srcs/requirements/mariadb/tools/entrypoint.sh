@@ -31,3 +31,5 @@ exec /usr/bin/mysqld --user=mysql $@
 # $MYSQL_DATABASE 이름의 데이터베이스를 생성. 문자셋 'utf8', 'utf8_general_ci'는 SQL 쿼리에서 대소문자를 구분하지 않게 해준다.
 # root 에게 모든 권한 부여. 단, localhost 접근시에만 유효. (creat root).
 # $MYSQL_DATABASE 에 해당하는 데이터베이스에 대해 $MYSQL_USER 사용자에게 모든 권한 부여. (creat user).
+# bootstrap mode : 초기화, 설정 파일 적용, 데이터베이스 생성, 사용ㅅ자 생성, 권한 등을 부여. 이 초기화 과정을 통해 mysql 서버를 실행하기 전에 미리 데이터베이스를 생성하고 초기화할 수 있다.
+# exec : mysql을 PID 1으로 주기 위해.
