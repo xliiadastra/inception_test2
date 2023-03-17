@@ -27,3 +27,5 @@ fclean : clean
 	sudo sed -i s/$(DOMAIN)//g /etc/hosts
 
 .PHONY: all run clean fclean
+
+# prune : 시스템에서 더 이상 ㅎ사용되지 않는 모든 이미지 및 컨테이너를 삭제.

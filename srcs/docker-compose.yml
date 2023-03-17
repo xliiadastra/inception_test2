@@ -58,3 +58,9 @@ volumes:
 networks:
   inception:
     driver: bridge
+
+# networks : 
+# volumes : host 머신과 바인딩(실시간으로 파일들을 공유) 하기 위해서 설정해준다. 컨테이너를 삭제하고 다시 생성할 때, 이전 상태를 복원하거나 수정하기 용이하다.
+# driver : local(host)
+# type : local default
+# o : mount 시 추가적인 옵션을 설정할 수 있는 파라미터. 해당 파일에선 bind 옵션을 준거다.
