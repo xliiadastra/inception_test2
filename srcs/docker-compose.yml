@@ -59,7 +59,7 @@ networks:
   inception:
     driver: bridge
 
-# networks : 
+# networks : 단일 네트워크를 정의. 새로운 Docker bridge 생성. 인스턴스를 생성할 때 해당 네트워크를 사용할 수 있으며 컨테이너들이 inception 네트워크에 참여할 수 있게 지시하여 다른 컨테이너들과 통신할 수 있다.(원래는 격리된 공간들 이기 때문에)
 # volumes : host 머신과 바인딩(실시간으로 파일들을 공유) 하기 위해서 설정해준다. 컨테이너를 삭제하고 다시 생성할 때, 이전 상태를 복원하거나 수정하기 용이하다.
 # driver : local(host)
 # type : local default
